@@ -1,3 +1,4 @@
+
 CREATE TABLE users (
     login text,
     password text,
@@ -6,8 +7,14 @@ CREATE TABLE users (
     PRIMARY KEY (login)
  );
 
-CREATE TABLE ?? (
+CREATE TABLE chat (
+  id int, - ?
+  users set,
+  messages list,
+  PRIMARY KEY (id)
+);
 
+CREATE TABLE ? (
 
-  PRIMARY KEY ()
+  PRIMARY KEY()
 );

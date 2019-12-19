@@ -6,7 +6,6 @@ CREATE TABLE users (
     PRIMARY KEY (login)
  );
 
--------
 
 CREATE TABLE items (
    id text,
@@ -14,4 +13,11 @@ CREATE TABLE items (
    price double,
    quantity int, - ???
    PRIMARY KEY (id)
+);
+
+
+
+CREATE TABLE ? (
+
+  PRIMARY KEY()
 );
