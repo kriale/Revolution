@@ -1,0 +1,17 @@
+CREATE TABLE users (
+    login text,
+    password text,
+    money double,
+    items list,
+    PRIMARY KEY (login)
+ );
+
+-------
+
+CREATE TABLE items (
+   id text,
+   name text,
+   price double,
+   quantity int, - ???
+   PRIMARY KEY (id)
+);

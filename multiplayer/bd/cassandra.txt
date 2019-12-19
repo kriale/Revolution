@@ -1,0 +1,13 @@
+CREATE TABLE users (
+    login text,
+    password text,
+    money double,
+    items list,
+    PRIMARY KEY (login)
+ );
+
+CREATE TABLE ?? (
+
+
+  PRIMARY KEY ()
+);
