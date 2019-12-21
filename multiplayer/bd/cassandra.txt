@@ -1,20 +1,20 @@
-
 CREATE TABLE users (
     login text,
     password text,
-    money double,
+    money decimal,
     items list,
     PRIMARY KEY (login)
  );
 
 CREATE TABLE chat (
-  id int, - ?
+  id int,
   users set,
   messages list,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE ? (
-
-  PRIMARY KEY()
+CREATE TABLE server (
+   id int,
+   quantity int,
+   PRIMARY KEY(id)
 );
