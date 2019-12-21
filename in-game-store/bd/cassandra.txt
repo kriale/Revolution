@@ -1,7 +1,7 @@
 CREATE TABLE users (
     login text,
     password text,
-    money double,
+    money decimal,
     items list,
     PRIMARY KEY (login)
  );
@@ -10,14 +10,13 @@ CREATE TABLE users (
 CREATE TABLE items (
    id text,
    name text,
-   price double,
-   quantity int, - ???
+   price decimal,
+   quantity int,
    PRIMARY KEY (id)
 );
 
-
-
-CREATE TABLE ? (
-
-  PRIMARY KEY()
+CREATE TABLE basket (
+   id int,
+   items list,
+   PRIMARY KEY (id)
 );
