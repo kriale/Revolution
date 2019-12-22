@@ -20,3 +20,9 @@ CREATE TABLE basket (
    items list,
    PRIMARY KEY (id)
 );
+
+CREATE TABLE section (
+  name text,
+  PRIMARY KEY (name)
+
+);

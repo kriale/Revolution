@@ -18,3 +18,10 @@ CREATE TABLE server (
    quantity int,
    PRIMARY KEY(id)
 );
+
+CREATE TABLE groups (
+   name text,
+   users set,
+   count int,
+   PRIMARY KEY(name)
+);
