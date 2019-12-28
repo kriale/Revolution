@@ -1,0 +1,7 @@
+SELECT * FROM items
+WHERE price <= value ;
+
+SELECT * FROM users
+WHERE login = value;
+
+INSERT INTO items (id ,name, price,quantity ) VALUES (1, 'value', 1, 1);

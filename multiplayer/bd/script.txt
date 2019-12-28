@@ -1,0 +1,11 @@
+SELECT * FROM chat
+WHERE id = value;
+
+SELECT * FROM groups
+WHERE name = value;
+
+SELECT * FROM chat
+WHERE id = value;
+
+SELECT * FROM users
+WHERE login = value;
