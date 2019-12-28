@@ -11,6 +11,16 @@ service ChatService {
     list<Message> getMessages(MessagesRequest messagesRequest);
 }
 
+
+
+service PrivateChatService {
+    Message sendMessage(1: MessageRequest messageRequest);
+
+    list<Message> getMessages(1: MessagesRequest messagesRequest);
+}
+
+
+
 struct Message {
     1: string message;
     2: string username;
@@ -32,4 +42,9 @@ struct UnsubscriptionRequest{
 
 struct MessagesRequest{
     1: string username;
+}
+
+struct PrivatMessages{
+    1: i64 chatId;
+    2: list<Message> messages;
 }
