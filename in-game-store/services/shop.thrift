@@ -107,16 +107,7 @@ service ShopService {
 
     ShopItem findItem(1: string itemname),
 
-    bool deleteItem(1: string itemname)
+    bool deleteItem(1: string itemname),
 
     oneway void zip()
-}
-
-
-
-
-
-
-service SearchItemService{
-        list<string> searchitem(1:string name),
 }
