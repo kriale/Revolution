@@ -105,7 +105,9 @@ service ShopService {
 
     ItemSearchResult findListOfItemsByType(1: string type),
 
-    ShopItem findItem(1: string itemname),
+    ItemSearchResult findListOfItemsByName(1: string name),
+
+    ShopItem getItem(1: i64 itemId),
 
     bool deleteItem(1: string itemname),
 
