@@ -27,4 +27,4 @@ CREATE TABLE notifications (
 id int,
 users set,
 PRIMARY KEY(id)
-)
+);
