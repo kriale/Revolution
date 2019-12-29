@@ -16,9 +16,10 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   private static final org.apache.thrift.protocol.TField FIRSTNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("firstname", org.apache.thrift.protocol.TType.STRING, (short)3);
   private static final org.apache.thrift.protocol.TField LASTNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("lastname", org.apache.thrift.protocol.TType.STRING, (short)4);
   private static final org.apache.thrift.protocol.TField EMAIL_FIELD_DESC = new org.apache.thrift.protocol.TField("email", org.apache.thrift.protocol.TType.STRING, (short)5);
-  private static final org.apache.thrift.protocol.TField USER_STATUS_FIELD_DESC = new org.apache.thrift.protocol.TField("userStatus", org.apache.thrift.protocol.TType.I32, (short)6);
-  private static final org.apache.thrift.protocol.TField LOC_FIELD_DESC = new org.apache.thrift.protocol.TField("loc", org.apache.thrift.protocol.TType.STRUCT, (short)7);
-  private static final org.apache.thrift.protocol.TField GAMEITEMS_FIELD_DESC = new org.apache.thrift.protocol.TField("gameitems", org.apache.thrift.protocol.TType.LIST, (short)8);
+  private static final org.apache.thrift.protocol.TField PASSWORD_FIELD_DESC = new org.apache.thrift.protocol.TField("password", org.apache.thrift.protocol.TType.STRING, (short)6);
+  private static final org.apache.thrift.protocol.TField USER_STATUS_FIELD_DESC = new org.apache.thrift.protocol.TField("userStatus", org.apache.thrift.protocol.TType.I32, (short)7);
+  private static final org.apache.thrift.protocol.TField LOC_FIELD_DESC = new org.apache.thrift.protocol.TField("loc", org.apache.thrift.protocol.TType.STRUCT, (short)8);
+  private static final org.apache.thrift.protocol.TField GAMEITEMS_FIELD_DESC = new org.apache.thrift.protocol.TField("gameitems", org.apache.thrift.protocol.TType.LIST, (short)9);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new UserStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new UserTupleSchemeFactory();
@@ -28,6 +29,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   public @org.apache.thrift.annotation.Nullable java.lang.String firstname; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String lastname; // required
   public @org.apache.thrift.annotation.Nullable java.lang.String email; // required
+  public @org.apache.thrift.annotation.Nullable java.lang.String password; // required
   public int userStatus; // optional
   public @org.apache.thrift.annotation.Nullable Location loc; // optional
   public @org.apache.thrift.annotation.Nullable java.util.List<ShopItem> gameitems; // optional
@@ -39,9 +41,10 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     FIRSTNAME((short)3, "firstname"),
     LASTNAME((short)4, "lastname"),
     EMAIL((short)5, "email"),
-    USER_STATUS((short)6, "userStatus"),
-    LOC((short)7, "loc"),
-    GAMEITEMS((short)8, "gameitems");
+    PASSWORD((short)6, "password"),
+    USER_STATUS((short)7, "userStatus"),
+    LOC((short)8, "loc"),
+    GAMEITEMS((short)9, "gameitems");
 
     private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -67,11 +70,13 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
           return LASTNAME;
         case 5: // EMAIL
           return EMAIL;
-        case 6: // USER_STATUS
+        case 6: // PASSWORD
+          return PASSWORD;
+        case 7: // USER_STATUS
           return USER_STATUS;
-        case 7: // LOC
+        case 8: // LOC
           return LOC;
-        case 8: // GAMEITEMS
+        case 9: // GAMEITEMS
           return GAMEITEMS;
         default:
           return null;
@@ -131,6 +136,8 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.EMAIL, new org.apache.thrift.meta_data.FieldMetaData("email", org.apache.thrift.TFieldRequirementType.REQUIRED, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+    tmpMap.put(_Fields.PASSWORD, new org.apache.thrift.meta_data.FieldMetaData("password", org.apache.thrift.TFieldRequirementType.REQUIRED, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     tmpMap.put(_Fields.USER_STATUS, new org.apache.thrift.meta_data.FieldMetaData("userStatus", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
     tmpMap.put(_Fields.LOC, new org.apache.thrift.meta_data.FieldMetaData("loc", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
@@ -149,7 +156,8 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     java.lang.String username,
     java.lang.String firstname,
     java.lang.String lastname,
-    java.lang.String email)
+    java.lang.String email,
+    java.lang.String password)
   {
     this();
     this.id = id;
@@ -158,6 +166,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     this.firstname = firstname;
     this.lastname = lastname;
     this.email = email;
+    this.password = password;
   }
 
   /**
@@ -177,6 +186,9 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
     if (other.isSetEmail()) {
       this.email = other.email;
+    }
+    if (other.isSetPassword()) {
+      this.password = other.password;
     }
     this.userStatus = other.userStatus;
     if (other.isSetLoc()) {
@@ -203,6 +215,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     this.firstname = null;
     this.lastname = null;
     this.email = null;
+    this.password = null;
     setUserStatusIsSet(false);
     this.userStatus = 0;
     this.loc = null;
@@ -329,6 +342,31 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   public void setEmailIsSet(boolean value) {
     if (!value) {
       this.email = null;
+    }
+  }
+
+  @org.apache.thrift.annotation.Nullable
+  public java.lang.String getPassword() {
+    return this.password;
+  }
+
+  public User setPassword(@org.apache.thrift.annotation.Nullable java.lang.String password) {
+    this.password = password;
+    return this;
+  }
+
+  public void unsetPassword() {
+    this.password = null;
+  }
+
+  /** Returns true if field password is set (has been assigned a value) and false otherwise */
+  public boolean isSetPassword() {
+    return this.password != null;
+  }
+
+  public void setPasswordIsSet(boolean value) {
+    if (!value) {
+      this.password = null;
     }
   }
 
@@ -463,6 +501,14 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       }
       break;
 
+    case PASSWORD:
+      if (value == null) {
+        unsetPassword();
+      } else {
+        setPassword((java.lang.String)value);
+      }
+      break;
+
     case USER_STATUS:
       if (value == null) {
         unsetUserStatus();
@@ -508,6 +554,9 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     case EMAIL:
       return getEmail();
 
+    case PASSWORD:
+      return getPassword();
+
     case USER_STATUS:
       return getUserStatus();
 
@@ -538,6 +587,8 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       return isSetLastname();
     case EMAIL:
       return isSetEmail();
+    case PASSWORD:
+      return isSetPassword();
     case USER_STATUS:
       return isSetUserStatus();
     case LOC:
@@ -608,6 +659,15 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return false;
     }
 
+    boolean this_present_password = true && this.isSetPassword();
+    boolean that_present_password = true && that.isSetPassword();
+    if (this_present_password || that_present_password) {
+      if (!(this_present_password && that_present_password))
+        return false;
+      if (!this.password.equals(that.password))
+        return false;
+    }
+
     boolean this_present_userStatus = true && this.isSetUserStatus();
     boolean that_present_userStatus = true && that.isSetUserStatus();
     if (this_present_userStatus || that_present_userStatus) {
@@ -659,6 +719,10 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     hashCode = hashCode * 8191 + ((isSetEmail()) ? 131071 : 524287);
     if (isSetEmail())
       hashCode = hashCode * 8191 + email.hashCode();
+
+    hashCode = hashCode * 8191 + ((isSetPassword()) ? 131071 : 524287);
+    if (isSetPassword())
+      hashCode = hashCode * 8191 + password.hashCode();
 
     hashCode = hashCode * 8191 + ((isSetUserStatus()) ? 131071 : 524287);
     if (isSetUserStatus())
@@ -729,6 +793,16 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
     if (isSetEmail()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.email, other.email);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = java.lang.Boolean.valueOf(isSetPassword()).compareTo(other.isSetPassword());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetPassword()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.password, other.password);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -819,6 +893,14 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       sb.append(this.email);
     }
     first = false;
+    if (!first) sb.append(", ");
+    sb.append("password:");
+    if (this.password == null) {
+      sb.append("null");
+    } else {
+      sb.append(this.password);
+    }
+    first = false;
     if (isSetUserStatus()) {
       if (!first) sb.append(", ");
       sb.append("userStatus:");
@@ -863,6 +945,9 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
     if (email == null) {
       throw new org.apache.thrift.protocol.TProtocolException("Required field 'email' was not present! Struct: " + toString());
+    }
+    if (password == null) {
+      throw new org.apache.thrift.protocol.TProtocolException("Required field 'password' was not present! Struct: " + toString());
     }
     // check for sub-struct validity
     if (loc != null) {
@@ -946,7 +1031,15 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 6: // USER_STATUS
+          case 6: // PASSWORD
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.password = iprot.readString();
+              struct.setPasswordIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 7: // USER_STATUS
             if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
               struct.userStatus = iprot.readI32();
               struct.setUserStatusIsSet(true);
@@ -954,7 +1047,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 7: // LOC
+          case 8: // LOC
             if (schemeField.type == org.apache.thrift.protocol.TType.STRUCT) {
               struct.loc = new Location();
               struct.loc.read(iprot);
@@ -963,7 +1056,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
-          case 8: // GAMEITEMS
+          case 9: // GAMEITEMS
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
                 org.apache.thrift.protocol.TList _list0 = iprot.readListBegin();
@@ -1023,6 +1116,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         oprot.writeString(struct.email);
         oprot.writeFieldEnd();
       }
+      if (struct.password != null) {
+        oprot.writeFieldBegin(PASSWORD_FIELD_DESC);
+        oprot.writeString(struct.password);
+        oprot.writeFieldEnd();
+      }
       if (struct.isSetUserStatus()) {
         oprot.writeFieldBegin(USER_STATUS_FIELD_DESC);
         oprot.writeI32(struct.userStatus);
@@ -1071,6 +1169,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       oprot.writeString(struct.firstname);
       oprot.writeString(struct.lastname);
       oprot.writeString(struct.email);
+      oprot.writeString(struct.password);
       java.util.BitSet optionals = new java.util.BitSet();
       if (struct.isSetUserStatus()) {
         optionals.set(0);
@@ -1112,6 +1211,8 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       struct.setLastnameIsSet(true);
       struct.email = iprot.readString();
       struct.setEmailIsSet(true);
+      struct.password = iprot.readString();
+      struct.setPasswordIsSet(true);
       java.util.BitSet incoming = iprot.readBitSet(3);
       if (incoming.get(0)) {
         struct.userStatus = iprot.readI32();

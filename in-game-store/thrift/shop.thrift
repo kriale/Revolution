@@ -31,9 +31,10 @@ struct User {
         3: required string firstname;
         4: required string lastname;
         5: required string email;
-        6: optional i32 userStatus;
-        7: optional Location loc;
-        8: optional ItemList gameitems;
+        6: required string password;
+        7: optional i32 userStatus;
+        8: optional Location loc;
+        9: optional ItemList gameitems;
 }
 
 
@@ -82,11 +83,12 @@ service UserService {
             2: string firstname,
             3: string lastname,
             4: string email,
+            5: string password,
     ) throws (1: UserAlreadyExists message),
 
     bool loginUser(
             1: string username,
-            2: string email,
+            2: string password,
     ) throws (1: InvalidUserDataSupplied message),
 
     void logoutUser(1: i64 id),
@@ -99,7 +101,7 @@ service UserService {
         3: string updateValue
         ) throws (1: InvalidUserDataSupplied message),
 
-    bool deleteUser(1: string username, 2: string email) throws (1: InvalidUserDataSupplied message),
+    bool deleteUser(1: string username, 2: string password) throws (1: InvalidUserDataSupplied message),
 
     oneway void zip()
 }

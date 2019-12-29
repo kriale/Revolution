@@ -14,9 +14,9 @@ public class UserService {
 
     public void ping() throws org.apache.thrift.TException;
 
-    public boolean createUser(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email) throws UserAlreadyExists, org.apache.thrift.TException;
+    public boolean createUser(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email, java.lang.String password) throws UserAlreadyExists, org.apache.thrift.TException;
 
-    public boolean loginUser(java.lang.String username, java.lang.String email) throws InvalidUserDataSupplied, org.apache.thrift.TException;
+    public boolean loginUser(java.lang.String username, java.lang.String password) throws InvalidUserDataSupplied, org.apache.thrift.TException;
 
     public void logoutUser(long id) throws org.apache.thrift.TException;
 
@@ -24,7 +24,7 @@ public class UserService {
 
     public boolean updateUser(java.lang.String username, java.lang.String type, java.lang.String updateValue) throws InvalidUserDataSupplied, org.apache.thrift.TException;
 
-    public boolean deleteUser(java.lang.String username, java.lang.String email) throws InvalidUserDataSupplied, org.apache.thrift.TException;
+    public boolean deleteUser(java.lang.String username, java.lang.String password) throws InvalidUserDataSupplied, org.apache.thrift.TException;
 
     public void zip() throws org.apache.thrift.TException;
 
@@ -34,9 +34,9 @@ public class UserService {
 
     public void ping(org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException;
 
-    public void createUser(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
+    public void createUser(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email, java.lang.String password, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
 
-    public void loginUser(java.lang.String username, java.lang.String email, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
+    public void loginUser(java.lang.String username, java.lang.String password, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
 
     public void logoutUser(long id, org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException;
 
@@ -44,7 +44,7 @@ public class UserService {
 
     public void updateUser(java.lang.String username, java.lang.String type, java.lang.String updateValue, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
 
-    public void deleteUser(java.lang.String username, java.lang.String email, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
+    public void deleteUser(java.lang.String username, java.lang.String password, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException;
 
     public void zip(org.apache.thrift.async.AsyncMethodCallback<Void> resultHandler) throws org.apache.thrift.TException;
 
@@ -89,19 +89,20 @@ public class UserService {
       return;
     }
 
-    public boolean createUser(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email) throws UserAlreadyExists, org.apache.thrift.TException
+    public boolean createUser(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email, java.lang.String password) throws UserAlreadyExists, org.apache.thrift.TException
     {
-      send_createUser(username, firstname, lastname, email);
+      send_createUser(username, firstname, lastname, email, password);
       return recv_createUser();
     }
 
-    public void send_createUser(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email) throws org.apache.thrift.TException
+    public void send_createUser(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email, java.lang.String password) throws org.apache.thrift.TException
     {
       createUser_args args = new createUser_args();
       args.setUsername(username);
       args.setFirstname(firstname);
       args.setLastname(lastname);
       args.setEmail(email);
+      args.setPassword(password);
       sendBase("createUser", args);
     }
 
@@ -118,17 +119,17 @@ public class UserService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "createUser failed: unknown result");
     }
 
-    public boolean loginUser(java.lang.String username, java.lang.String email) throws InvalidUserDataSupplied, org.apache.thrift.TException
+    public boolean loginUser(java.lang.String username, java.lang.String password) throws InvalidUserDataSupplied, org.apache.thrift.TException
     {
-      send_loginUser(username, email);
+      send_loginUser(username, password);
       return recv_loginUser();
     }
 
-    public void send_loginUser(java.lang.String username, java.lang.String email) throws org.apache.thrift.TException
+    public void send_loginUser(java.lang.String username, java.lang.String password) throws org.apache.thrift.TException
     {
       loginUser_args args = new loginUser_args();
       args.setUsername(username);
-      args.setEmail(email);
+      args.setPassword(password);
       sendBase("loginUser", args);
     }
 
@@ -216,17 +217,17 @@ public class UserService {
       throw new org.apache.thrift.TApplicationException(org.apache.thrift.TApplicationException.MISSING_RESULT, "updateUser failed: unknown result");
     }
 
-    public boolean deleteUser(java.lang.String username, java.lang.String email) throws InvalidUserDataSupplied, org.apache.thrift.TException
+    public boolean deleteUser(java.lang.String username, java.lang.String password) throws InvalidUserDataSupplied, org.apache.thrift.TException
     {
-      send_deleteUser(username, email);
+      send_deleteUser(username, password);
       return recv_deleteUser();
     }
 
-    public void send_deleteUser(java.lang.String username, java.lang.String email) throws org.apache.thrift.TException
+    public void send_deleteUser(java.lang.String username, java.lang.String password) throws org.apache.thrift.TException
     {
       deleteUser_args args = new deleteUser_args();
       args.setUsername(username);
-      args.setEmail(email);
+      args.setPassword(password);
       sendBase("deleteUser", args);
     }
 
@@ -301,9 +302,9 @@ public class UserService {
       }
     }
 
-    public void createUser(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
+    public void createUser(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email, java.lang.String password, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
       checkReady();
-      createUser_call method_call = new createUser_call(username, firstname, lastname, email, resultHandler, this, ___protocolFactory, ___transport);
+      createUser_call method_call = new createUser_call(username, firstname, lastname, email, password, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
@@ -313,12 +314,14 @@ public class UserService {
       private java.lang.String firstname;
       private java.lang.String lastname;
       private java.lang.String email;
-      public createUser_call(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private java.lang.String password;
+      public createUser_call(java.lang.String username, java.lang.String firstname, java.lang.String lastname, java.lang.String email, java.lang.String password, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.username = username;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+        this.password = password;
       }
 
       public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
@@ -328,6 +331,7 @@ public class UserService {
         args.setFirstname(firstname);
         args.setLastname(lastname);
         args.setEmail(email);
+        args.setPassword(password);
         args.write(prot);
         prot.writeMessageEnd();
       }
@@ -342,27 +346,27 @@ public class UserService {
       }
     }
 
-    public void loginUser(java.lang.String username, java.lang.String email, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
+    public void loginUser(java.lang.String username, java.lang.String password, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
       checkReady();
-      loginUser_call method_call = new loginUser_call(username, email, resultHandler, this, ___protocolFactory, ___transport);
+      loginUser_call method_call = new loginUser_call(username, password, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
     public static class loginUser_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Boolean> {
       private java.lang.String username;
-      private java.lang.String email;
-      public loginUser_call(java.lang.String username, java.lang.String email, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private java.lang.String password;
+      public loginUser_call(java.lang.String username, java.lang.String password, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.username = username;
-        this.email = email;
+        this.password = password;
       }
 
       public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
         prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("loginUser", org.apache.thrift.protocol.TMessageType.CALL, 0));
         loginUser_args args = new loginUser_args();
         args.setUsername(username);
-        args.setEmail(email);
+        args.setPassword(password);
         args.write(prot);
         prot.writeMessageEnd();
       }
@@ -479,27 +483,27 @@ public class UserService {
       }
     }
 
-    public void deleteUser(java.lang.String username, java.lang.String email, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
+    public void deleteUser(java.lang.String username, java.lang.String password, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
       checkReady();
-      deleteUser_call method_call = new deleteUser_call(username, email, resultHandler, this, ___protocolFactory, ___transport);
+      deleteUser_call method_call = new deleteUser_call(username, password, resultHandler, this, ___protocolFactory, ___transport);
       this.___currentMethod = method_call;
       ___manager.call(method_call);
     }
 
     public static class deleteUser_call extends org.apache.thrift.async.TAsyncMethodCall<java.lang.Boolean> {
       private java.lang.String username;
-      private java.lang.String email;
-      public deleteUser_call(java.lang.String username, java.lang.String email, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
+      private java.lang.String password;
+      public deleteUser_call(java.lang.String username, java.lang.String password, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler, org.apache.thrift.async.TAsyncClient client, org.apache.thrift.protocol.TProtocolFactory protocolFactory, org.apache.thrift.transport.TNonblockingTransport transport) throws org.apache.thrift.TException {
         super(client, protocolFactory, transport, resultHandler, false);
         this.username = username;
-        this.email = email;
+        this.password = password;
       }
 
       public void write_args(org.apache.thrift.protocol.TProtocol prot) throws org.apache.thrift.TException {
         prot.writeMessageBegin(new org.apache.thrift.protocol.TMessage("deleteUser", org.apache.thrift.protocol.TMessageType.CALL, 0));
         deleteUser_args args = new deleteUser_args();
         args.setUsername(username);
-        args.setEmail(email);
+        args.setPassword(password);
         args.write(prot);
         prot.writeMessageEnd();
       }
@@ -613,7 +617,7 @@ public class UserService {
       public createUser_result getResult(I iface, createUser_args args) throws org.apache.thrift.TException {
         createUser_result result = new createUser_result();
         try {
-          result.success = iface.createUser(args.username, args.firstname, args.lastname, args.email);
+          result.success = iface.createUser(args.username, args.firstname, args.lastname, args.email, args.password);
           result.setSuccessIsSet(true);
         } catch (UserAlreadyExists message) {
           result.message = message;
@@ -643,7 +647,7 @@ public class UserService {
       public loginUser_result getResult(I iface, loginUser_args args) throws org.apache.thrift.TException {
         loginUser_result result = new loginUser_result();
         try {
-          result.success = iface.loginUser(args.username, args.email);
+          result.success = iface.loginUser(args.username, args.password);
           result.setSuccessIsSet(true);
         } catch (InvalidUserDataSupplied message) {
           result.message = message;
@@ -753,7 +757,7 @@ public class UserService {
       public deleteUser_result getResult(I iface, deleteUser_args args) throws org.apache.thrift.TException {
         deleteUser_result result = new deleteUser_result();
         try {
-          result.success = iface.deleteUser(args.username, args.email);
+          result.success = iface.deleteUser(args.username, args.password);
           result.setSuccessIsSet(true);
         } catch (InvalidUserDataSupplied message) {
           result.message = message;
@@ -932,7 +936,7 @@ public class UserService {
       }
 
       public void start(I iface, createUser_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
-        iface.createUser(args.username, args.firstname, args.lastname, args.email,resultHandler);
+        iface.createUser(args.username, args.firstname, args.lastname, args.email, args.password,resultHandler);
       }
     }
 
@@ -998,7 +1002,7 @@ public class UserService {
       }
 
       public void start(I iface, loginUser_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
-        iface.loginUser(args.username, args.email,resultHandler);
+        iface.loginUser(args.username, args.password,resultHandler);
       }
     }
 
@@ -1251,7 +1255,7 @@ public class UserService {
       }
 
       public void start(I iface, deleteUser_args args, org.apache.thrift.async.AsyncMethodCallback<java.lang.Boolean> resultHandler) throws org.apache.thrift.TException {
-        iface.deleteUser(args.username, args.email,resultHandler);
+        iface.deleteUser(args.username, args.password,resultHandler);
       }
     }
 
@@ -1806,6 +1810,7 @@ public class UserService {
     private static final org.apache.thrift.protocol.TField FIRSTNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("firstname", org.apache.thrift.protocol.TType.STRING, (short)2);
     private static final org.apache.thrift.protocol.TField LASTNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("lastname", org.apache.thrift.protocol.TType.STRING, (short)3);
     private static final org.apache.thrift.protocol.TField EMAIL_FIELD_DESC = new org.apache.thrift.protocol.TField("email", org.apache.thrift.protocol.TType.STRING, (short)4);
+    private static final org.apache.thrift.protocol.TField PASSWORD_FIELD_DESC = new org.apache.thrift.protocol.TField("password", org.apache.thrift.protocol.TType.STRING, (short)5);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new createUser_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new createUser_argsTupleSchemeFactory();
@@ -1814,13 +1819,15 @@ public class UserService {
     public @org.apache.thrift.annotation.Nullable java.lang.String firstname; // required
     public @org.apache.thrift.annotation.Nullable java.lang.String lastname; // required
     public @org.apache.thrift.annotation.Nullable java.lang.String email; // required
+    public @org.apache.thrift.annotation.Nullable java.lang.String password; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       USERNAME((short)1, "username"),
       FIRSTNAME((short)2, "firstname"),
       LASTNAME((short)3, "lastname"),
-      EMAIL((short)4, "email");
+      EMAIL((short)4, "email"),
+      PASSWORD((short)5, "password");
 
       private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -1844,6 +1851,8 @@ public class UserService {
             return LASTNAME;
           case 4: // EMAIL
             return EMAIL;
+          case 5: // PASSWORD
+            return PASSWORD;
           default:
             return null;
         }
@@ -1896,6 +1905,8 @@ public class UserService {
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       tmpMap.put(_Fields.EMAIL, new org.apache.thrift.meta_data.FieldMetaData("email", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+      tmpMap.put(_Fields.PASSWORD, new org.apache.thrift.meta_data.FieldMetaData("password", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+          new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(createUser_args.class, metaDataMap);
     }
@@ -1907,13 +1918,15 @@ public class UserService {
       java.lang.String username,
       java.lang.String firstname,
       java.lang.String lastname,
-      java.lang.String email)
+      java.lang.String email,
+      java.lang.String password)
     {
       this();
       this.username = username;
       this.firstname = firstname;
       this.lastname = lastname;
       this.email = email;
+      this.password = password;
     }
 
     /**
@@ -1932,6 +1945,9 @@ public class UserService {
       if (other.isSetEmail()) {
         this.email = other.email;
       }
+      if (other.isSetPassword()) {
+        this.password = other.password;
+      }
     }
 
     public createUser_args deepCopy() {
@@ -1944,6 +1960,7 @@ public class UserService {
       this.firstname = null;
       this.lastname = null;
       this.email = null;
+      this.password = null;
     }
 
     @org.apache.thrift.annotation.Nullable
@@ -2046,6 +2063,31 @@ public class UserService {
       }
     }
 
+    @org.apache.thrift.annotation.Nullable
+    public java.lang.String getPassword() {
+      return this.password;
+    }
+
+    public createUser_args setPassword(@org.apache.thrift.annotation.Nullable java.lang.String password) {
+      this.password = password;
+      return this;
+    }
+
+    public void unsetPassword() {
+      this.password = null;
+    }
+
+    /** Returns true if field password is set (has been assigned a value) and false otherwise */
+    public boolean isSetPassword() {
+      return this.password != null;
+    }
+
+    public void setPasswordIsSet(boolean value) {
+      if (!value) {
+        this.password = null;
+      }
+    }
+
     public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
       switch (field) {
       case USERNAME:
@@ -2080,6 +2122,14 @@ public class UserService {
         }
         break;
 
+      case PASSWORD:
+        if (value == null) {
+          unsetPassword();
+        } else {
+          setPassword((java.lang.String)value);
+        }
+        break;
+
       }
     }
 
@@ -2097,6 +2147,9 @@ public class UserService {
 
       case EMAIL:
         return getEmail();
+
+      case PASSWORD:
+        return getPassword();
 
       }
       throw new java.lang.IllegalStateException();
@@ -2117,6 +2170,8 @@ public class UserService {
         return isSetLastname();
       case EMAIL:
         return isSetEmail();
+      case PASSWORD:
+        return isSetPassword();
       }
       throw new java.lang.IllegalStateException();
     }
@@ -2172,6 +2227,15 @@ public class UserService {
           return false;
       }
 
+      boolean this_present_password = true && this.isSetPassword();
+      boolean that_present_password = true && that.isSetPassword();
+      if (this_present_password || that_present_password) {
+        if (!(this_present_password && that_present_password))
+          return false;
+        if (!this.password.equals(that.password))
+          return false;
+      }
+
       return true;
     }
 
@@ -2194,6 +2258,10 @@ public class UserService {
       hashCode = hashCode * 8191 + ((isSetEmail()) ? 131071 : 524287);
       if (isSetEmail())
         hashCode = hashCode * 8191 + email.hashCode();
+
+      hashCode = hashCode * 8191 + ((isSetPassword()) ? 131071 : 524287);
+      if (isSetPassword())
+        hashCode = hashCode * 8191 + password.hashCode();
 
       return hashCode;
     }
@@ -2242,6 +2310,16 @@ public class UserService {
       }
       if (isSetEmail()) {
         lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.email, other.email);
+        if (lastComparison != 0) {
+          return lastComparison;
+        }
+      }
+      lastComparison = java.lang.Boolean.valueOf(isSetPassword()).compareTo(other.isSetPassword());
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+      if (isSetPassword()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.password, other.password);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -2296,6 +2374,14 @@ public class UserService {
         sb.append("null");
       } else {
         sb.append(this.email);
+      }
+      first = false;
+      if (!first) sb.append(", ");
+      sb.append("password:");
+      if (this.password == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.password);
       }
       first = false;
       sb.append(")");
@@ -2373,6 +2459,14 @@ public class UserService {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
+            case 5: // PASSWORD
+              if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+                struct.password = iprot.readString();
+                struct.setPasswordIsSet(true);
+              } else { 
+                org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+              }
+              break;
             default:
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
           }
@@ -2408,6 +2502,11 @@ public class UserService {
           oprot.writeString(struct.email);
           oprot.writeFieldEnd();
         }
+        if (struct.password != null) {
+          oprot.writeFieldBegin(PASSWORD_FIELD_DESC);
+          oprot.writeString(struct.password);
+          oprot.writeFieldEnd();
+        }
         oprot.writeFieldStop();
         oprot.writeStructEnd();
       }
@@ -2438,7 +2537,10 @@ public class UserService {
         if (struct.isSetEmail()) {
           optionals.set(3);
         }
-        oprot.writeBitSet(optionals, 4);
+        if (struct.isSetPassword()) {
+          optionals.set(4);
+        }
+        oprot.writeBitSet(optionals, 5);
         if (struct.isSetUsername()) {
           oprot.writeString(struct.username);
         }
@@ -2451,12 +2553,15 @@ public class UserService {
         if (struct.isSetEmail()) {
           oprot.writeString(struct.email);
         }
+        if (struct.isSetPassword()) {
+          oprot.writeString(struct.password);
+        }
       }
 
       @Override
       public void read(org.apache.thrift.protocol.TProtocol prot, createUser_args struct) throws org.apache.thrift.TException {
         org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-        java.util.BitSet incoming = iprot.readBitSet(4);
+        java.util.BitSet incoming = iprot.readBitSet(5);
         if (incoming.get(0)) {
           struct.username = iprot.readString();
           struct.setUsernameIsSet(true);
@@ -2472,6 +2577,10 @@ public class UserService {
         if (incoming.get(3)) {
           struct.email = iprot.readString();
           struct.setEmailIsSet(true);
+        }
+        if (incoming.get(4)) {
+          struct.password = iprot.readString();
+          struct.setPasswordIsSet(true);
         }
       }
     }
@@ -2956,18 +3065,18 @@ public class UserService {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("loginUser_args");
 
     private static final org.apache.thrift.protocol.TField USERNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("username", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField EMAIL_FIELD_DESC = new org.apache.thrift.protocol.TField("email", org.apache.thrift.protocol.TType.STRING, (short)2);
+    private static final org.apache.thrift.protocol.TField PASSWORD_FIELD_DESC = new org.apache.thrift.protocol.TField("password", org.apache.thrift.protocol.TType.STRING, (short)2);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new loginUser_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new loginUser_argsTupleSchemeFactory();
 
     public @org.apache.thrift.annotation.Nullable java.lang.String username; // required
-    public @org.apache.thrift.annotation.Nullable java.lang.String email; // required
+    public @org.apache.thrift.annotation.Nullable java.lang.String password; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       USERNAME((short)1, "username"),
-      EMAIL((short)2, "email");
+      PASSWORD((short)2, "password");
 
       private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -2985,8 +3094,8 @@ public class UserService {
         switch(fieldId) {
           case 1: // USERNAME
             return USERNAME;
-          case 2: // EMAIL
-            return EMAIL;
+          case 2: // PASSWORD
+            return PASSWORD;
           default:
             return null;
         }
@@ -3033,7 +3142,7 @@ public class UserService {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.USERNAME, new org.apache.thrift.meta_data.FieldMetaData("username", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.EMAIL, new org.apache.thrift.meta_data.FieldMetaData("email", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+      tmpMap.put(_Fields.PASSWORD, new org.apache.thrift.meta_data.FieldMetaData("password", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(loginUser_args.class, metaDataMap);
@@ -3044,11 +3153,11 @@ public class UserService {
 
     public loginUser_args(
       java.lang.String username,
-      java.lang.String email)
+      java.lang.String password)
     {
       this();
       this.username = username;
-      this.email = email;
+      this.password = password;
     }
 
     /**
@@ -3058,8 +3167,8 @@ public class UserService {
       if (other.isSetUsername()) {
         this.username = other.username;
       }
-      if (other.isSetEmail()) {
-        this.email = other.email;
+      if (other.isSetPassword()) {
+        this.password = other.password;
       }
     }
 
@@ -3070,7 +3179,7 @@ public class UserService {
     @Override
     public void clear() {
       this.username = null;
-      this.email = null;
+      this.password = null;
     }
 
     @org.apache.thrift.annotation.Nullable
@@ -3099,27 +3208,27 @@ public class UserService {
     }
 
     @org.apache.thrift.annotation.Nullable
-    public java.lang.String getEmail() {
-      return this.email;
+    public java.lang.String getPassword() {
+      return this.password;
     }
 
-    public loginUser_args setEmail(@org.apache.thrift.annotation.Nullable java.lang.String email) {
-      this.email = email;
+    public loginUser_args setPassword(@org.apache.thrift.annotation.Nullable java.lang.String password) {
+      this.password = password;
       return this;
     }
 
-    public void unsetEmail() {
-      this.email = null;
+    public void unsetPassword() {
+      this.password = null;
     }
 
-    /** Returns true if field email is set (has been assigned a value) and false otherwise */
-    public boolean isSetEmail() {
-      return this.email != null;
+    /** Returns true if field password is set (has been assigned a value) and false otherwise */
+    public boolean isSetPassword() {
+      return this.password != null;
     }
 
-    public void setEmailIsSet(boolean value) {
+    public void setPasswordIsSet(boolean value) {
       if (!value) {
-        this.email = null;
+        this.password = null;
       }
     }
 
@@ -3133,11 +3242,11 @@ public class UserService {
         }
         break;
 
-      case EMAIL:
+      case PASSWORD:
         if (value == null) {
-          unsetEmail();
+          unsetPassword();
         } else {
-          setEmail((java.lang.String)value);
+          setPassword((java.lang.String)value);
         }
         break;
 
@@ -3150,8 +3259,8 @@ public class UserService {
       case USERNAME:
         return getUsername();
 
-      case EMAIL:
-        return getEmail();
+      case PASSWORD:
+        return getPassword();
 
       }
       throw new java.lang.IllegalStateException();
@@ -3166,8 +3275,8 @@ public class UserService {
       switch (field) {
       case USERNAME:
         return isSetUsername();
-      case EMAIL:
-        return isSetEmail();
+      case PASSWORD:
+        return isSetPassword();
       }
       throw new java.lang.IllegalStateException();
     }
@@ -3196,12 +3305,12 @@ public class UserService {
           return false;
       }
 
-      boolean this_present_email = true && this.isSetEmail();
-      boolean that_present_email = true && that.isSetEmail();
-      if (this_present_email || that_present_email) {
-        if (!(this_present_email && that_present_email))
+      boolean this_present_password = true && this.isSetPassword();
+      boolean that_present_password = true && that.isSetPassword();
+      if (this_present_password || that_present_password) {
+        if (!(this_present_password && that_present_password))
           return false;
-        if (!this.email.equals(that.email))
+        if (!this.password.equals(that.password))
           return false;
       }
 
@@ -3216,9 +3325,9 @@ public class UserService {
       if (isSetUsername())
         hashCode = hashCode * 8191 + username.hashCode();
 
-      hashCode = hashCode * 8191 + ((isSetEmail()) ? 131071 : 524287);
-      if (isSetEmail())
-        hashCode = hashCode * 8191 + email.hashCode();
+      hashCode = hashCode * 8191 + ((isSetPassword()) ? 131071 : 524287);
+      if (isSetPassword())
+        hashCode = hashCode * 8191 + password.hashCode();
 
       return hashCode;
     }
@@ -3241,12 +3350,12 @@ public class UserService {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetEmail()).compareTo(other.isSetEmail());
+      lastComparison = java.lang.Boolean.valueOf(isSetPassword()).compareTo(other.isSetPassword());
       if (lastComparison != 0) {
         return lastComparison;
       }
-      if (isSetEmail()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.email, other.email);
+      if (isSetPassword()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.password, other.password);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -3280,11 +3389,11 @@ public class UserService {
       }
       first = false;
       if (!first) sb.append(", ");
-      sb.append("email:");
-      if (this.email == null) {
+      sb.append("password:");
+      if (this.password == null) {
         sb.append("null");
       } else {
-        sb.append(this.email);
+        sb.append(this.password);
       }
       first = false;
       sb.append(")");
@@ -3338,10 +3447,10 @@ public class UserService {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
-            case 2: // EMAIL
+            case 2: // PASSWORD
               if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.email = iprot.readString();
-                struct.setEmailIsSet(true);
+                struct.password = iprot.readString();
+                struct.setPasswordIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
@@ -3366,9 +3475,9 @@ public class UserService {
           oprot.writeString(struct.username);
           oprot.writeFieldEnd();
         }
-        if (struct.email != null) {
-          oprot.writeFieldBegin(EMAIL_FIELD_DESC);
-          oprot.writeString(struct.email);
+        if (struct.password != null) {
+          oprot.writeFieldBegin(PASSWORD_FIELD_DESC);
+          oprot.writeString(struct.password);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -3392,15 +3501,15 @@ public class UserService {
         if (struct.isSetUsername()) {
           optionals.set(0);
         }
-        if (struct.isSetEmail()) {
+        if (struct.isSetPassword()) {
           optionals.set(1);
         }
         oprot.writeBitSet(optionals, 2);
         if (struct.isSetUsername()) {
           oprot.writeString(struct.username);
         }
-        if (struct.isSetEmail()) {
-          oprot.writeString(struct.email);
+        if (struct.isSetPassword()) {
+          oprot.writeString(struct.password);
         }
       }
 
@@ -3413,8 +3522,8 @@ public class UserService {
           struct.setUsernameIsSet(true);
         }
         if (incoming.get(1)) {
-          struct.email = iprot.readString();
-          struct.setEmailIsSet(true);
+          struct.password = iprot.readString();
+          struct.setPasswordIsSet(true);
         }
       }
     }
@@ -6302,18 +6411,18 @@ public class UserService {
     private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("deleteUser_args");
 
     private static final org.apache.thrift.protocol.TField USERNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("username", org.apache.thrift.protocol.TType.STRING, (short)1);
-    private static final org.apache.thrift.protocol.TField EMAIL_FIELD_DESC = new org.apache.thrift.protocol.TField("email", org.apache.thrift.protocol.TType.STRING, (short)2);
+    private static final org.apache.thrift.protocol.TField PASSWORD_FIELD_DESC = new org.apache.thrift.protocol.TField("password", org.apache.thrift.protocol.TType.STRING, (short)2);
 
     private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new deleteUser_argsStandardSchemeFactory();
     private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new deleteUser_argsTupleSchemeFactory();
 
     public @org.apache.thrift.annotation.Nullable java.lang.String username; // required
-    public @org.apache.thrift.annotation.Nullable java.lang.String email; // required
+    public @org.apache.thrift.annotation.Nullable java.lang.String password; // required
 
     /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
     public enum _Fields implements org.apache.thrift.TFieldIdEnum {
       USERNAME((short)1, "username"),
-      EMAIL((short)2, "email");
+      PASSWORD((short)2, "password");
 
       private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -6331,8 +6440,8 @@ public class UserService {
         switch(fieldId) {
           case 1: // USERNAME
             return USERNAME;
-          case 2: // EMAIL
-            return EMAIL;
+          case 2: // PASSWORD
+            return PASSWORD;
           default:
             return null;
         }
@@ -6379,7 +6488,7 @@ public class UserService {
       java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
       tmpMap.put(_Fields.USERNAME, new org.apache.thrift.meta_data.FieldMetaData("username", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-      tmpMap.put(_Fields.EMAIL, new org.apache.thrift.meta_data.FieldMetaData("email", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+      tmpMap.put(_Fields.PASSWORD, new org.apache.thrift.meta_data.FieldMetaData("password", org.apache.thrift.TFieldRequirementType.DEFAULT, 
           new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
       metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
       org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(deleteUser_args.class, metaDataMap);
@@ -6390,11 +6499,11 @@ public class UserService {
 
     public deleteUser_args(
       java.lang.String username,
-      java.lang.String email)
+      java.lang.String password)
     {
       this();
       this.username = username;
-      this.email = email;
+      this.password = password;
     }
 
     /**
@@ -6404,8 +6513,8 @@ public class UserService {
       if (other.isSetUsername()) {
         this.username = other.username;
       }
-      if (other.isSetEmail()) {
-        this.email = other.email;
+      if (other.isSetPassword()) {
+        this.password = other.password;
       }
     }
 
@@ -6416,7 +6525,7 @@ public class UserService {
     @Override
     public void clear() {
       this.username = null;
-      this.email = null;
+      this.password = null;
     }
 
     @org.apache.thrift.annotation.Nullable
@@ -6445,27 +6554,27 @@ public class UserService {
     }
 
     @org.apache.thrift.annotation.Nullable
-    public java.lang.String getEmail() {
-      return this.email;
+    public java.lang.String getPassword() {
+      return this.password;
     }
 
-    public deleteUser_args setEmail(@org.apache.thrift.annotation.Nullable java.lang.String email) {
-      this.email = email;
+    public deleteUser_args setPassword(@org.apache.thrift.annotation.Nullable java.lang.String password) {
+      this.password = password;
       return this;
     }
 
-    public void unsetEmail() {
-      this.email = null;
+    public void unsetPassword() {
+      this.password = null;
     }
 
-    /** Returns true if field email is set (has been assigned a value) and false otherwise */
-    public boolean isSetEmail() {
-      return this.email != null;
+    /** Returns true if field password is set (has been assigned a value) and false otherwise */
+    public boolean isSetPassword() {
+      return this.password != null;
     }
 
-    public void setEmailIsSet(boolean value) {
+    public void setPasswordIsSet(boolean value) {
       if (!value) {
-        this.email = null;
+        this.password = null;
       }
     }
 
@@ -6479,11 +6588,11 @@ public class UserService {
         }
         break;
 
-      case EMAIL:
+      case PASSWORD:
         if (value == null) {
-          unsetEmail();
+          unsetPassword();
         } else {
-          setEmail((java.lang.String)value);
+          setPassword((java.lang.String)value);
         }
         break;
 
@@ -6496,8 +6605,8 @@ public class UserService {
       case USERNAME:
         return getUsername();
 
-      case EMAIL:
-        return getEmail();
+      case PASSWORD:
+        return getPassword();
 
       }
       throw new java.lang.IllegalStateException();
@@ -6512,8 +6621,8 @@ public class UserService {
       switch (field) {
       case USERNAME:
         return isSetUsername();
-      case EMAIL:
-        return isSetEmail();
+      case PASSWORD:
+        return isSetPassword();
       }
       throw new java.lang.IllegalStateException();
     }
@@ -6542,12 +6651,12 @@ public class UserService {
           return false;
       }
 
-      boolean this_present_email = true && this.isSetEmail();
-      boolean that_present_email = true && that.isSetEmail();
-      if (this_present_email || that_present_email) {
-        if (!(this_present_email && that_present_email))
+      boolean this_present_password = true && this.isSetPassword();
+      boolean that_present_password = true && that.isSetPassword();
+      if (this_present_password || that_present_password) {
+        if (!(this_present_password && that_present_password))
           return false;
-        if (!this.email.equals(that.email))
+        if (!this.password.equals(that.password))
           return false;
       }
 
@@ -6562,9 +6671,9 @@ public class UserService {
       if (isSetUsername())
         hashCode = hashCode * 8191 + username.hashCode();
 
-      hashCode = hashCode * 8191 + ((isSetEmail()) ? 131071 : 524287);
-      if (isSetEmail())
-        hashCode = hashCode * 8191 + email.hashCode();
+      hashCode = hashCode * 8191 + ((isSetPassword()) ? 131071 : 524287);
+      if (isSetPassword())
+        hashCode = hashCode * 8191 + password.hashCode();
 
       return hashCode;
     }
@@ -6587,12 +6696,12 @@ public class UserService {
           return lastComparison;
         }
       }
-      lastComparison = java.lang.Boolean.valueOf(isSetEmail()).compareTo(other.isSetEmail());
+      lastComparison = java.lang.Boolean.valueOf(isSetPassword()).compareTo(other.isSetPassword());
       if (lastComparison != 0) {
         return lastComparison;
       }
-      if (isSetEmail()) {
-        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.email, other.email);
+      if (isSetPassword()) {
+        lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.password, other.password);
         if (lastComparison != 0) {
           return lastComparison;
         }
@@ -6626,11 +6735,11 @@ public class UserService {
       }
       first = false;
       if (!first) sb.append(", ");
-      sb.append("email:");
-      if (this.email == null) {
+      sb.append("password:");
+      if (this.password == null) {
         sb.append("null");
       } else {
-        sb.append(this.email);
+        sb.append(this.password);
       }
       first = false;
       sb.append(")");
@@ -6684,10 +6793,10 @@ public class UserService {
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
               break;
-            case 2: // EMAIL
+            case 2: // PASSWORD
               if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
-                struct.email = iprot.readString();
-                struct.setEmailIsSet(true);
+                struct.password = iprot.readString();
+                struct.setPasswordIsSet(true);
               } else { 
                 org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
               }
@@ -6712,9 +6821,9 @@ public class UserService {
           oprot.writeString(struct.username);
           oprot.writeFieldEnd();
         }
-        if (struct.email != null) {
-          oprot.writeFieldBegin(EMAIL_FIELD_DESC);
-          oprot.writeString(struct.email);
+        if (struct.password != null) {
+          oprot.writeFieldBegin(PASSWORD_FIELD_DESC);
+          oprot.writeString(struct.password);
           oprot.writeFieldEnd();
         }
         oprot.writeFieldStop();
@@ -6738,15 +6847,15 @@ public class UserService {
         if (struct.isSetUsername()) {
           optionals.set(0);
         }
-        if (struct.isSetEmail()) {
+        if (struct.isSetPassword()) {
           optionals.set(1);
         }
         oprot.writeBitSet(optionals, 2);
         if (struct.isSetUsername()) {
           oprot.writeString(struct.username);
         }
-        if (struct.isSetEmail()) {
-          oprot.writeString(struct.email);
+        if (struct.isSetPassword()) {
+          oprot.writeString(struct.password);
         }
       }
 
@@ -6759,8 +6868,8 @@ public class UserService {
           struct.setUsernameIsSet(true);
         }
         if (incoming.get(1)) {
-          struct.email = iprot.readString();
-          struct.setEmailIsSet(true);
+          struct.password = iprot.readString();
+          struct.setPasswordIsSet(true);
         }
       }
     }
