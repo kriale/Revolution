@@ -5,3 +5,4 @@ curl -XGET 'localhost:9200/items/_search?pretty' -d '
   "query": { "match_all": {} },
   "_source": ["id", "price"]
 }'
+ Данный пример возвращает json с полями id, price
