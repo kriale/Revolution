@@ -5,23 +5,14 @@ struct Location {
     2: required double longitude;
 }
 
-struct User {
-        1: required i64 id;
-        2: required string username;
-        3: required string firstname;
-        4: required string lastname;
-        5: required string email;
-        6: optional i32 userStatus;
-        7: optional Location loc;
-}
 
 struct ShopItem {
         1: required i64 id;
-        1: required string name;
-        2: required string description;
-        3: required i64 price;
-        4: required string type;
-        5: optional string stock;
+        2: required string name;
+        3: required string description;
+        4: required i64 price;
+        5: required string type;
+        6: optional string stock;
 }
 
 struct CreditCard {
@@ -34,7 +25,23 @@ struct CreditCard {
 
 typedef list<ShopItem> ItemList
 
-strutct ItemSearchResult {
+struct User {
+        1: required i64 id;
+        2: required string username;
+        3: required string firstname;
+        4: required string lastname;
+        5: required string email;
+        6: optional i32 userStatus;
+        7: optional Location loc;
+        8: optional ItemList gameitems;
+}
+
+
+struct Busket {
+    1: ItemList item;
+}
+
+struct ItemSearchResult {
     1: ItemList item;
 }
 
@@ -58,8 +65,8 @@ exception InvalidCardDataSupplied {
 service PayService {
     void ping(),
 
-    bool buyItem(
-            1: string name,
+    bool payForItem(
+            1: string itemName,
             2: CreditCard card,
     ) throws (1: InvalidCardDataSupplied message),
 
@@ -101,7 +108,7 @@ service UserService {
 service ShopService {
     void ping(),
 
-    bool addNewItemToTheShop (1: ShopItem item) throws (1: AddExistingItem),
+    bool addNewItemToTheBusket (1: ShopItem item) throws (1: AddExistingItem message),
 
     ItemSearchResult findListOfItemsByType(1: string type),
 
@@ -109,7 +116,9 @@ service ShopService {
 
     ShopItem getItem(1: i64 itemId),
 
-    bool deleteItem(1: string itemname),
+    ItemSearchResult sortListOfItemsByParametr(1: string parametr),
+
+    bool deleteItemFromBusket(1: string itemname),
 
     oneway void zip()
 }
