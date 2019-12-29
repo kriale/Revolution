@@ -39,7 +39,9 @@ struct User {
 
 
 struct Busket {
-    1: ItemList item;
+    1: i64 id;
+    2: ItemList item;
+    3: string username;
 }
 
 struct ItemSearchResult {

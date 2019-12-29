@@ -11,16 +11,22 @@ package thrift.java;
 public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, java.io.Serializable, Cloneable, Comparable<Busket> {
   private static final org.apache.thrift.protocol.TStruct STRUCT_DESC = new org.apache.thrift.protocol.TStruct("Busket");
 
-  private static final org.apache.thrift.protocol.TField ITEM_FIELD_DESC = new org.apache.thrift.protocol.TField("item", org.apache.thrift.protocol.TType.LIST, (short)1);
+  private static final org.apache.thrift.protocol.TField ID_FIELD_DESC = new org.apache.thrift.protocol.TField("id", org.apache.thrift.protocol.TType.I64, (short)1);
+  private static final org.apache.thrift.protocol.TField ITEM_FIELD_DESC = new org.apache.thrift.protocol.TField("item", org.apache.thrift.protocol.TType.LIST, (short)2);
+  private static final org.apache.thrift.protocol.TField USERNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("username", org.apache.thrift.protocol.TType.STRING, (short)3);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new BusketStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new BusketTupleSchemeFactory();
 
+  public long id; // required
   public @org.apache.thrift.annotation.Nullable java.util.List<ShopItem> item; // required
+  public @org.apache.thrift.annotation.Nullable java.lang.String username; // required
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
-    ITEM((short)1, "item");
+    ID((short)1, "id"),
+    ITEM((short)2, "item"),
+    USERNAME((short)3, "username");
 
     private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
 
@@ -36,8 +42,12 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
     @org.apache.thrift.annotation.Nullable
     public static _Fields findByThriftId(int fieldId) {
       switch(fieldId) {
-        case 1: // ITEM
+        case 1: // ID
+          return ID;
+        case 2: // ITEM
           return ITEM;
+        case 3: // USERNAME
+          return USERNAME;
         default:
           return null;
       }
@@ -79,11 +89,17 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
   }
 
   // isset id assignments
+  private static final int __ID_ISSET_ID = 0;
+  private byte __isset_bitfield = 0;
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
+    tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I64)));
     tmpMap.put(_Fields.ITEM, new org.apache.thrift.meta_data.FieldMetaData("item", org.apache.thrift.TFieldRequirementType.DEFAULT, 
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.LIST        , "ItemList")));
+    tmpMap.put(_Fields.USERNAME, new org.apache.thrift.meta_data.FieldMetaData("username", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(Busket.class, metaDataMap);
   }
@@ -92,22 +108,32 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
   }
 
   public Busket(
-    java.util.List<ShopItem> item)
+    long id,
+    java.util.List<ShopItem> item,
+    java.lang.String username)
   {
     this();
+    this.id = id;
+    setIdIsSet(true);
     this.item = item;
+    this.username = username;
   }
 
   /**
    * Performs a deep copy on <i>other</i>.
    */
   public Busket(Busket other) {
+    __isset_bitfield = other.__isset_bitfield;
+    this.id = other.id;
     if (other.isSetItem()) {
       java.util.List<ShopItem> __this__item = new java.util.ArrayList<ShopItem>(other.item.size());
       for (ShopItem other_element : other.item) {
         __this__item.add(new ShopItem(other_element));
       }
       this.item = __this__item;
+    }
+    if (other.isSetUsername()) {
+      this.username = other.username;
     }
   }
 
@@ -117,7 +143,33 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
 
   @Override
   public void clear() {
+    setIdIsSet(false);
+    this.id = 0;
     this.item = null;
+    this.username = null;
+  }
+
+  public long getId() {
+    return this.id;
+  }
+
+  public Busket setId(long id) {
+    this.id = id;
+    setIdIsSet(true);
+    return this;
+  }
+
+  public void unsetId() {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __ID_ISSET_ID);
+  }
+
+  /** Returns true if field id is set (has been assigned a value) and false otherwise */
+  public boolean isSetId() {
+    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __ID_ISSET_ID);
+  }
+
+  public void setIdIsSet(boolean value) {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __ID_ISSET_ID, value);
   }
 
   public int getItemSize() {
@@ -161,13 +213,54 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
     }
   }
 
+  @org.apache.thrift.annotation.Nullable
+  public java.lang.String getUsername() {
+    return this.username;
+  }
+
+  public Busket setUsername(@org.apache.thrift.annotation.Nullable java.lang.String username) {
+    this.username = username;
+    return this;
+  }
+
+  public void unsetUsername() {
+    this.username = null;
+  }
+
+  /** Returns true if field username is set (has been assigned a value) and false otherwise */
+  public boolean isSetUsername() {
+    return this.username != null;
+  }
+
+  public void setUsernameIsSet(boolean value) {
+    if (!value) {
+      this.username = null;
+    }
+  }
+
   public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
     switch (field) {
+    case ID:
+      if (value == null) {
+        unsetId();
+      } else {
+        setId((java.lang.Long)value);
+      }
+      break;
+
     case ITEM:
       if (value == null) {
         unsetItem();
       } else {
         setItem((java.util.List<ShopItem>)value);
+      }
+      break;
+
+    case USERNAME:
+      if (value == null) {
+        unsetUsername();
+      } else {
+        setUsername((java.lang.String)value);
       }
       break;
 
@@ -177,8 +270,14 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
   @org.apache.thrift.annotation.Nullable
   public java.lang.Object getFieldValue(_Fields field) {
     switch (field) {
+    case ID:
+      return getId();
+
     case ITEM:
       return getItem();
+
+    case USERNAME:
+      return getUsername();
 
     }
     throw new java.lang.IllegalStateException();
@@ -191,8 +290,12 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
     }
 
     switch (field) {
+    case ID:
+      return isSetId();
     case ITEM:
       return isSetItem();
+    case USERNAME:
+      return isSetUsername();
     }
     throw new java.lang.IllegalStateException();
   }
@@ -212,12 +315,30 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
     if (this == that)
       return true;
 
+    boolean this_present_id = true;
+    boolean that_present_id = true;
+    if (this_present_id || that_present_id) {
+      if (!(this_present_id && that_present_id))
+        return false;
+      if (this.id != that.id)
+        return false;
+    }
+
     boolean this_present_item = true && this.isSetItem();
     boolean that_present_item = true && that.isSetItem();
     if (this_present_item || that_present_item) {
       if (!(this_present_item && that_present_item))
         return false;
       if (!this.item.equals(that.item))
+        return false;
+    }
+
+    boolean this_present_username = true && this.isSetUsername();
+    boolean that_present_username = true && that.isSetUsername();
+    if (this_present_username || that_present_username) {
+      if (!(this_present_username && that_present_username))
+        return false;
+      if (!this.username.equals(that.username))
         return false;
     }
 
@@ -228,9 +349,15 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
   public int hashCode() {
     int hashCode = 1;
 
+    hashCode = hashCode * 8191 + org.apache.thrift.TBaseHelper.hashCode(id);
+
     hashCode = hashCode * 8191 + ((isSetItem()) ? 131071 : 524287);
     if (isSetItem())
       hashCode = hashCode * 8191 + item.hashCode();
+
+    hashCode = hashCode * 8191 + ((isSetUsername()) ? 131071 : 524287);
+    if (isSetUsername())
+      hashCode = hashCode * 8191 + username.hashCode();
 
     return hashCode;
   }
@@ -243,12 +370,32 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
 
     int lastComparison = 0;
 
+    lastComparison = java.lang.Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetId()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.id, other.id);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
     lastComparison = java.lang.Boolean.valueOf(isSetItem()).compareTo(other.isSetItem());
     if (lastComparison != 0) {
       return lastComparison;
     }
     if (isSetItem()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.item, other.item);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = java.lang.Boolean.valueOf(isSetUsername()).compareTo(other.isSetUsername());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetUsername()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.username, other.username);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -274,11 +421,23 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
     java.lang.StringBuilder sb = new java.lang.StringBuilder("Busket(");
     boolean first = true;
 
+    sb.append("id:");
+    sb.append(this.id);
+    first = false;
+    if (!first) sb.append(", ");
     sb.append("item:");
     if (this.item == null) {
       sb.append("null");
     } else {
       sb.append(this.item);
+    }
+    first = false;
+    if (!first) sb.append(", ");
+    sb.append("username:");
+    if (this.username == null) {
+      sb.append("null");
+    } else {
+      sb.append(this.username);
     }
     first = false;
     sb.append(")");
@@ -300,6 +459,8 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
 
   private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
     try {
+      // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
+      __isset_bitfield = 0;
       read(new org.apache.thrift.protocol.TCompactProtocol(new org.apache.thrift.transport.TIOStreamTransport(in)));
     } catch (org.apache.thrift.TException te) {
       throw new java.io.IOException(te);
@@ -324,7 +485,15 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
           break;
         }
         switch (schemeField.id) {
-          case 1: // ITEM
+          case 1: // ID
+            if (schemeField.type == org.apache.thrift.protocol.TType.I64) {
+              struct.id = iprot.readI64();
+              struct.setIdIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 2: // ITEM
             if (schemeField.type == org.apache.thrift.protocol.TType.LIST) {
               {
                 org.apache.thrift.protocol.TList _list8 = iprot.readListBegin();
@@ -339,6 +508,14 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
                 iprot.readListEnd();
               }
               struct.setItemIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 3: // USERNAME
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.username = iprot.readString();
+              struct.setUsernameIsSet(true);
             } else { 
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
@@ -358,6 +535,9 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
       struct.validate();
 
       oprot.writeStructBegin(STRUCT_DESC);
+      oprot.writeFieldBegin(ID_FIELD_DESC);
+      oprot.writeI64(struct.id);
+      oprot.writeFieldEnd();
       if (struct.item != null) {
         oprot.writeFieldBegin(ITEM_FIELD_DESC);
         {
@@ -368,6 +548,11 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
           }
           oprot.writeListEnd();
         }
+        oprot.writeFieldEnd();
+      }
+      if (struct.username != null) {
+        oprot.writeFieldBegin(USERNAME_FIELD_DESC);
+        oprot.writeString(struct.username);
         oprot.writeFieldEnd();
       }
       oprot.writeFieldStop();
@@ -388,10 +573,19 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
     public void write(org.apache.thrift.protocol.TProtocol prot, Busket struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol oprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
       java.util.BitSet optionals = new java.util.BitSet();
-      if (struct.isSetItem()) {
+      if (struct.isSetId()) {
         optionals.set(0);
       }
-      oprot.writeBitSet(optionals, 1);
+      if (struct.isSetItem()) {
+        optionals.set(1);
+      }
+      if (struct.isSetUsername()) {
+        optionals.set(2);
+      }
+      oprot.writeBitSet(optionals, 3);
+      if (struct.isSetId()) {
+        oprot.writeI64(struct.id);
+      }
       if (struct.isSetItem()) {
         {
           oprot.writeI32(struct.item.size());
@@ -401,13 +595,20 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
           }
         }
       }
+      if (struct.isSetUsername()) {
+        oprot.writeString(struct.username);
+      }
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, Busket struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(1);
+      java.util.BitSet incoming = iprot.readBitSet(3);
       if (incoming.get(0)) {
+        struct.id = iprot.readI64();
+        struct.setIdIsSet(true);
+      }
+      if (incoming.get(1)) {
         {
           org.apache.thrift.protocol.TList _list13 = new org.apache.thrift.protocol.TList(org.apache.thrift.protocol.TType.STRUCT, iprot.readI32());
           struct.item = new java.util.ArrayList<ShopItem>(_list13.size);
@@ -420,6 +621,10 @@ public class Busket implements org.apache.thrift.TBase<Busket, Busket._Fields>, 
           }
         }
         struct.setItemIsSet(true);
+      }
+      if (incoming.get(2)) {
+        struct.username = iprot.readString();
+        struct.setUsernameIsSet(true);
       }
     }
   }
