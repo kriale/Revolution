@@ -18,5 +18,6 @@ CREATE TABLE items (
 CREATE TABLE basket (
    id int,
    items list,
+   userLogin text
    PRIMARY KEY (id)
 );
