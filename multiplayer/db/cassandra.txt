@@ -1,11 +1,3 @@
-CREATE TABLE users (
-    login text,
-    password text,
-    money decimal,
-    items list,
-    PRIMARY KEY (login)
- );
-
 CREATE TABLE chat (
   id int,
   users set,
@@ -25,3 +17,14 @@ CREATE TABLE groups (
    count int,
    PRIMARY KEY(name)
 );
+
+CREATE TABLE ratings (
+rank text,
+users set,
+PRIMARY KEY(rank)
+)
+CREATE TABLE notifications (
+id int,
+users set,
+PRIMARY KEY(id)
+)
