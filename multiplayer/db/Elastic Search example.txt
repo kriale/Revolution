@@ -1,0 +1,7 @@
+?pretty сообщает, что надо форматировать вывод в формате json
+
+curl -XGET 'localhost:9200/groups/_search?pretty' -d '
+{
+  "query": { "match_all": {} },
+  "_source": ["name", "count"]
+}'
