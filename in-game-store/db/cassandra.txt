@@ -1,8 +1,10 @@
 CREATE TABLE users (
-    login text,
+    username text,
     password text,
-    money decimal,
+    firstname text,
+    secondname text,
     items list,
+    email text,
     PRIMARY KEY (login)
  );
 
@@ -11,11 +13,13 @@ CREATE TABLE items (
    id text,
    name text,
    price decimal,
-   quantity int,
+   description text,
+   type text,
+   stock text
    PRIMARY KEY (id)
 );
 
-CREATE TABLE basket (
+CREATE TABLE busket (
    id int,
    items list,
    userLogin text
