@@ -1,4 +1,3 @@
-?pretty сообщает, что надо форматировать вывод в формате json
 
 SELECT * FROM items
 WHERE price <= value ;
