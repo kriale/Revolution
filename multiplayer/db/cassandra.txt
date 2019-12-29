@@ -22,7 +22,8 @@ CREATE TABLE ratings (
 rank text,
 users set,
 PRIMARY KEY(rank)
-)
+);
+
 CREATE TABLE notifications (
 id int,
 users set,
