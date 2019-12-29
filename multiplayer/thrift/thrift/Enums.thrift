@@ -47,6 +47,13 @@ enum Missions{
     MISSION_7
 }
 
+enum Quests{
+    QUEST_1,
+    QUEST_2,
+    QUEST_3,
+    QUEST_4
+}
+
 enum MissionStatus{
     COMPLITED,
     IN_PROGRESS,

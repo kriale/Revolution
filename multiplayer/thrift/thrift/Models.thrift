@@ -38,7 +38,7 @@ struct Character{
 
 struct Quest{
     1: i64 id;
-    2: string namel
+    2: Enums.Quests name;
     3: i64 progress;
 }
 
@@ -78,7 +78,7 @@ struct Organization{
     1: i64 id;
     2: string name;
     3: Player leader;
-    4: list<Player> players;
+    4: list<Player> members;
     5: i64 progress;
 }
 
