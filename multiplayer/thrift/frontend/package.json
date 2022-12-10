@@ -18,7 +18,7 @@
   "dependencies": {
     "@types/thrift": "^0.10.8",
     "core-js": "^2.6.5",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "material-design-icons-iconfont": "^5.0.1",
     "moment": "^2.24.0",
     "stylus": "^0.54.5",
